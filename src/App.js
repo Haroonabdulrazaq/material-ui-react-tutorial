@@ -2,19 +2,30 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Button from '@material-ui/core/Button';
-// import SaveIcon from '@material-ui/icon/Save';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import SaveIcon from '@material-ui/icons/Save';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <Button
-        onClick={()=> alert(2+2)}
-        variant="outlined"
-        color="primary"
-      >
-        Hello world
-      </Button>
+      <ButtonGroup variant="contained">
+        <Button
+          startIcon={<SaveIcon/>}
+          variant="contained"
+          color="primary"
+        >
+          Save
+        </Button>
+        <Button
+          endIcon={<DeleteIcon/>}
+          variant="contained"
+          color="secondary"
+        >
+          Discard
+        </Button>
+      </ButtonGroup>
         <img src={logo} className="App-logo" alt="logo" />
       </header>
     </div>
