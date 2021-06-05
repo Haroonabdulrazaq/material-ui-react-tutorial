@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Paper,  Typography,  TextField,  Button, List, ListItem, ListItemText } from '@material-ui/core/';
+import { Paper,  Typography,  TextField,  Button, List, ListItem, ListItemText, ListItemSecondaryAction,  IconButton } from '@material-ui/core/';
 // import Grid from '@material-ui/core/Grid';
 // import Welcome from './components/Welcome';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -15,6 +15,7 @@ class App extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
   handleChange = (e) =>  {
   const {name, value} = e.target
@@ -29,6 +30,11 @@ class App extends Component {
         title: '',
       }));
     }
+  }
+  handleDelete = (id) =>  {
+    this.setState(({exercises}) => ({
+      exercises: exercises.filter((exercise)=> exercise.id !== id)
+    }));
   }
 
   render() {
@@ -82,7 +88,9 @@ class App extends Component {
           <List> 
             {
               this.state.exercises.map(({ id, title }) => <ListItem key={id}>
-                 <ListItemText primary={title} /> <DeleteIcon color ="secondary" variant="buton"/>
+                 <ListItemText primary={title} /> <ListItemSecondaryAction> 
+                    <IconButton color='secondary' onClick={() => this.handleDelete(id)} > <DeleteIcon/> </IconButton>
+                  </ListItemSecondaryAction>
               </ListItem> )}
           </List>
         </Paper>
