@@ -1,135 +1,94 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import SaveIcon from '@material-ui/icons/Save';
+import React, { Component } from 'react';
+import { Paper,  Typography,  TextField,  Button, List, ListItem, ListItemText } from '@material-ui/core/';
+// import Grid from '@material-ui/core/Grid';
+// import Welcome from './components/Welcome';
 import DeleteIcon from '@material-ui/icons/Delete';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import Favorite from '@material-ui/icons/Favorite';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { orange, green } from '@material-ui/core/colors';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-
-import AppBar from '@material-ui/core/AppBar';
-import ToolBar from '@material-ui/core/ToolBar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-
+import './App.css';
 import 'fontsource-roboto';
 
-const useStyles= makeStyles({
-  root: {
-    background:'linear-gradient(top right, #0ae45b, #33eacb)',
-    borderRadius: '3px',
-    marginBottom: '10px',
-    padding: '6px 19px'
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {  
+      exercises: [],
+      title: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-});
-
-const theme = createMuiTheme({
-  typography: {
-    h2: {
-      marginBottom: '16px',
+  handleChange = (e) =>  {
+  const {name, value} = e.target
+  console.log(e.target.value);
+    this.setState({ [name]: value });  
+  }
+  handleSubmit = (e) =>  {
+    e.preventDefault();
+    if (this.state.title) {
+      this.setState(( { exercises, title }) => ({
+        exercises: [...exercises, { id: Date.now(), title }],
+        title: '',
+      }));
     }
-  },
-  palette: {
-    primary: {
-      main: green[400],
-    },
-    secondary: {
-      main: orange[400],
-    } 
   }
-});
 
-const ButtonStyled =() => {
-  const classes = useStyles();
-  return (
-    <Button className={classes.root}>Custom Button</Button>
-  )
-}
-
-const CheckboxExample = () => {
-  const [checked, setChecked] = useState(false);
-  return (
-    <FormControlLabel
-      control={
-        <Checkbox
-          checked={checked}
-          onChange={(e)=> setChecked(e.target.checked)}
-          icon={<FavoriteBorder />}
-          checkedIcon={<Favorite />}
-        />
-      }
-      label={2}
-    />
-  )
-}
-
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Container >
-        <div className="App">
-          <header className="App-header">
-            <AppBar>
-              <ToolBar>
-                <IconButton>
-                  <MenuIcon />
-                </IconButton>
-                <Typography>
-                  MUI Themeing
-                </Typography>
-                <Button>Login</Button>
-              </ToolBar>
-            </AppBar>
-            <Typography variant="h2" component="div">
-              Welcome to MUI
+  render() {
+    console.log(this.state.title);
+    console.log('Result', this.state.exercises);
+    const { title } = this.state;
+    // const myStyle = {
+    //   border: '1px solid red',
+    //   background: 'black',
+    // }
+    return (
+      <div style={{
+        background: '#000',
+       color: "red",
+      }} >
+        <Paper elevation={3}>
+          <form onSubmit={this.handleSubmit}>
+            <Typography
+              color="primary"
+              variant='button'
+              align='center'
+              gutterBottom
+              margin='normal'>
+              Exercises
             </Typography>
-            <Typography variant="subtitle1">
-              Learn Material UI
-            </Typography>
-            <ButtonStyled/>
-            <Grid container spacing="2" justify="center">
-              <Grid item xs={4} sm={6} md={4}>
-                <Paper style= {{height: '75px', width:'100%'}} />
-              </Grid>
-              <Grid item xs={4} sm={12} md={4}>
-                <Paper style= {{height: '75px', width:'100%'}} />
-              </Grid>
-              <Grid item xs={4} sm={6} md={12}>
-                <Paper style= {{height: '75px', width:'100%'}} />
-              </Grid>
-            </Grid>
-            <CheckboxExample/>
-            <ButtonGroup variant="contained">
-              <Button
-                startIcon={<SaveIcon/>}
-                variant="contained"
-                color="primary"
-              >
-                Save
-              </Button>
-              <Button
-                endIcon={<DeleteIcon/>}
-                variant="contained"
-                color="secondary"
-              >
-                Discard
-              </Button>
-            </ButtonGroup>
-            <img src={logo} className="App-logo" alt="logo" />
-          </header>
-        </div>
-      </Container>
-    </ThemeProvider>
-  );
-}
+            <TextField
+              placeholder="Exercise"
+              variant="outlined"
+              label='Exercise'
+              name='title'
+              value={title}
+              onChange={this.handleChange}
+              margin='normal'
+              autoComplete='none'
+              autoFocus={false}
+            />
+            <Button color="primary" variant="contained" value="Submit" type="submit">Create</Button>
+          </form>
+          {/* {
+            this.state.exercises.map((exercise)=> {
+              const {item, id} = exercise;
+              return(
+                <ul>
+                  <li style={{color:'red'}}key={id}>
+                    {item}
+                  </li>
+                </ul>
+              )
+            })
+          } */}
+          <List> 
+            {
+              this.state.exercises.map(({ id, title }) => <ListItem key={id}>
+                 <ListItemText primary={title} /> <DeleteIcon color ="secondary" variant="buton"/>
+              </ListItem> )}
+          </List>
+        </Paper>
+      </div>
+    );
+  }
+};
 
 export default App;
