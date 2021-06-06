@@ -1,4 +1,9 @@
-.App {
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+/* .App {
   text-align: center;
 }
 
@@ -13,7 +18,7 @@
   }
 }
  input {
-   color: white !important;
+   color: black !important;
  }
 
 .App-header {
@@ -38,4 +43,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
