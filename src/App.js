@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SignInSide from './components/Signin';
 import './App.css';
 
 class App extends Component {
@@ -6,7 +7,7 @@ class App extends Component {
     console.log("Hello");
     return (
         <div>
-
+          <SignInSide/>
         </div>
     );
   }
