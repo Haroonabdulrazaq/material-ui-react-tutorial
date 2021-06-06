@@ -1,12 +1,43 @@
 import React, { Component } from 'react';
 import { Paper,  Typography,  TextField,  Button, List, ListItem, ListItemText, ListItemSecondaryAction,  IconButton } from '@material-ui/core/';
-// import Grid from '@material-ui/core/Grid';
-// import Welcome from './components/Welcome';
+import { withStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import {  orange, green } from '@material-ui/core/colors';
 import DeleteIcon from '@material-ui/icons/Delete';
-import './App.css';
+// import './App.css';
 import 'fontsource-roboto';
 
-class App extends Component {
+  const styles = {
+    wrapper: {
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    root: {
+      margin: 20,
+      padding: 20,
+      minWidth: 400,
+    },
+    form: {
+      display: 'flex',
+      alignItems: 'baseline',
+      justifyContent: 'space-evenly',
+    },
+    text: {
+      textAlign: 'center',
+      fontSize: 20,
+      display: 'block',
+    }
+  }
+  const theme = createMuiTheme({
+    palette: {
+      primary: green,
+      secondary: orange,
+    }
+  })
+
+export default withStyles(styles)(
+  class App extends Component {
   constructor(props) {
     super(props);
     this.state = {  
@@ -38,65 +69,61 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.title);
-    console.log('Result', this.state.exercises);
     const { title } = this.state;
-    // const myStyle = {
-    //   border: '1px solid red',
-    //   background: 'black',
-    // }
+    const { classes } = this.props;
+
     return (
-      <div style={{
-        background: '#000',
-       color: "red",
-      }} >
-        <Paper elevation={3}>
-          <form onSubmit={this.handleSubmit}>
+      <MuiThemeProvider theme={theme} >
+        <div className={classes.wrapper}>
+          <Paper elevation={3} className={classes.root}>
             <Typography
               color="primary"
               variant='button'
               align='center'
               gutterBottom
-              margin='normal'>
+              margin='normal'
+              className={classes.text}
+              >
               Exercises
             </Typography>
-            <TextField
-              placeholder="Exercise"
-              variant="outlined"
-              label='Exercise'
-              name='title'
-              value={title}
-              onChange={this.handleChange}
-              margin='normal'
-              autoComplete='none'
-              autoFocus={false}
-            />
-            <Button color="primary" variant="contained" value="Submit" type="submit">Create</Button>
-          </form>
-          {/* {
-            this.state.exercises.map((exercise)=> {
-              const {item, id} = exercise;
-              return(
-                <ul>
-                  <li style={{color:'red'}}key={id}>
-                    {item}
-                  </li>
-                </ul>
-              )
-            })
-          } */}
-          <List> 
-            {
-              this.state.exercises.map(({ id, title }) => <ListItem key={id}>
-                 <ListItemText primary={title} /> <ListItemSecondaryAction> 
-                    <IconButton color='secondary' onClick={() => this.handleDelete(id)} > <DeleteIcon/> </IconButton>
-                  </ListItemSecondaryAction>
-              </ListItem> )}
-          </List>
-        </Paper>
-      </div>
+            <form onSubmit={this.handleSubmit} className= {classes.form} >
+              <TextField
+                // variant="outlined"
+                label='Exercise'
+                name='title'
+                value={title}
+                onChange={this.handleChange}
+                margin='normal'
+                autoComplete='none'
+                autoFocus={false}
+              />
+              <Button color="primary" variant="contained" value="Submit" type="submit">Create</Button>
+            </form>
+            {/* {
+              this.state.exercises.map((exercise)=> {
+                const {item, id} = exercise;
+                return(
+                  <ul>
+                    <li style={{color:'red'}}key={id}>
+                      {item}
+                    </li>
+                  </ul>
+                )
+              })
+            } */}
+            <List> 
+              {
+                this.state.exercises.map(({ id, title }) => <ListItem key={id}>
+                  <ListItemText primary={title} /> <ListItemSecondaryAction> 
+                      <IconButton color='secondary' onClick={() => this.handleDelete(id)} > <DeleteIcon/> </IconButton>
+                    </ListItemSecondaryAction>
+                </ListItem> )}
+            </List>
+          </Paper>
+        </div>
+      </MuiThemeProvider>
     );
   }
-};
+});
 
-export default App;
+// export default App;
