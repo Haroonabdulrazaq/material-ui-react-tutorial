@@ -1,8 +1,7 @@
 import React from 'react';
-import { Grid, Paper, Avatar, TextField, Typography, Button, FormControlLabel, Checkbox, Link } from '@material-ui/core';
+import { CssBaseline, Grid, Paper, Avatar, TextField, Typography, Button, FormControlLabel, Checkbox, Link } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from  '@material-ui/core/styles';
-import { CssBaseline } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
