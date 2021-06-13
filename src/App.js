@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SignInSide from './components/Signin';
+import Dashboard from './components/dashboard/Dashboard';
 import './App.css';
 
 class App extends Component {
@@ -7,7 +7,7 @@ class App extends Component {
     console.log("Hello");
     return (
         <div>
-          <SignInSide/>
+          <Dashboard/>
         </div>
     );
   }
