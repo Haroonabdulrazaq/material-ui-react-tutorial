@@ -4,14 +4,14 @@ import { CssBaseline,
   Toolbar,
   IconButton,
   Typography,
-  Badge, Drawer, List,
+  Badge, Drawer, List, Container,
   Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 // import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsActiveRoundedIcon from '@material-ui/icons/NotificationsActiveRounded';
-import { mainListItems, secondaryListItems } from '../dashboard-copy/listItems';
+import { mainListItems, secondaryListItems } from './listItems';
 import clsx from 'clsx';
 
 
@@ -130,8 +130,13 @@ const Dashboard = () => {
         <Divider/>
         <List>{secondaryListItems}</List>
       </Drawer>
+      <main>
+        <Container>
+          Hello I am the main content
+        </Container>
+      </main>
     </div>
-  )
+  );
 }
 
 export default Dashboard;
