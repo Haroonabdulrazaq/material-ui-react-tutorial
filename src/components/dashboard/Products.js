@@ -12,7 +12,7 @@ const Products = () => {
             </Grid>
             <Grid item container>
                 <Grid item xs={0} sm={2} />
-                <Grid item xs={12} sm={10}>
+                <Grid item xs={12} sm={11}>
                     <Content />
                 </Grid>
                 <Grid/>

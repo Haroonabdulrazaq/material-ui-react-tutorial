@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Card, CardHeader, Avatar, CardActions, CardContent, Button, Typography, IconButton } from '@material-ui/core';
+import {Card, CardHeader, CardMedia, Avatar, CardActions, CardContent, Button, Typography, IconButton } from '@material-ui/core';
 import ShareIcon from '@material-ui/icons/Share';
 
 const useStyles = makeStyles({
@@ -18,6 +18,11 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  media: {
+    height: 300,
+    minWidth: 100,
+    border: '1px solid #eee',
+  }
 });
 
 const CoffeeCard = () => {
@@ -42,24 +47,21 @@ const CoffeeCard = () => {
         title= 'Shirmp and Complex Card'
         subheader= 'Jun, 20, 2031'
       />
+      <CardMedia 
+        aria-label="card-image"
+        className={classes.media}
+         // image="https://images.unsplash.com/photo-1574484284002-952d92456975?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
+        image="https://images.unsplash.com/photo-1598532213919-078e54dd1f40?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
+        title= "Pallela Dish"
+      />
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="h2">
-          be{bull}nev{bull}o{bull}lent
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+          This is the card content for all cards in this website
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small">Buy Now</Button>
+        <Button size="small">Apply Coupon</Button>
       </CardActions>
     </Card>
   );
