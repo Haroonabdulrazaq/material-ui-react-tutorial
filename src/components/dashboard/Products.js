@@ -1,27 +1,23 @@
 import React from 'react';
-import { Typography, AppBar, Toolbar, IconButton } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
-import AcUnitRoundedIcon from '@material-ui/icons/AcUnitRounded';
+import { Grid } from '@material-ui/core';
+ import Header from './Header';
+ import Content from './Content';
 
-const useStyles = makeStyles({
-    barIcon: {
-        display: 'flex',
-        justifyContent: 'space-between',
-    }
-});
+ 
 const Products = () => {
-    const classes = useStyles();
     return (
-        <AppBar position="static">
-            <Toolbar>
-                <Typography>
-                    <IconButton className={classes.barIcon}>
-                        Haroon Abdulrazaq
-                        <AcUnitRoundedIcon />
-                    </IconButton>
-                </Typography>
-            </Toolbar>
-        </AppBar>
+        <Grid container direction="column">
+            <Grid item>
+                <Header />
+            </Grid>
+            <Grid item container>
+                <Grid item xs={0} sm={2} />
+                <Grid item xs={12} sm={10}>
+                    <Content />
+                </Grid>
+                <Grid/>
+            </Grid>
+        </Grid>
     )
 }
 
